@@ -1,5 +1,6 @@
 "use client";
 
+import * as THREE from "three";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
