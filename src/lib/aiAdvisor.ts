@@ -126,14 +126,15 @@ export async function retrieveRelevantDocuments(query: string, limit = 3): Promi
   const docs = await collection.find({ embedding: { $exists: true } }).toArray();
 
   const scored = docs
-    .map((doc: KnowledgeDoc) => {
-      const score = doc.embedding ? cosineSimilarity(queryEmbedding, doc.embedding) : 0;
+    .map((doc) => {
+      const embedding = (doc as any).embedding || [];
+      const score = embedding.length > 0 ? cosineSimilarity(queryEmbedding, embedding) : 0;
       return { ...doc, score };
     })
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => (b as any).score - (a as any).score)
     .slice(0, limit);
 
-  return scored;
+  return scored as any;
 }
 
 export async function generateCareerAdvice(options: {
