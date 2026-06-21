@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 import { GlassCard } from "@/components/ui/GlassCard";
 import {
   RadarChart,
@@ -253,7 +254,7 @@ export default function Dashboard() {
                 <CartesianGrid stroke="#1f2937" strokeDasharray="4 4" />
                 <XAxis dataKey="title" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(value) => `$${value}k`} />
-                <Tooltip contentStyle={{ backgroundColor: "#111", border: "1px solid #333", borderRadius: "10px" }} formatter={(value: number) => [`$${value}k`, "Salary"]} />
+                <Tooltip contentStyle={{ backgroundColor: "#111", border: "1px solid #333", borderRadius: "10px" }} formatter={(value) => [`${value}k`, "Salary"]} />
                 <Bar dataKey="salary" fill="#7c3aed" radius={[12, 12, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
